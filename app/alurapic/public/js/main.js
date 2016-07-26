@@ -1,12 +1,12 @@
-angular.module('alurapic', []).controller('FotosController', function($scope, $http){
+angular.module('alurapic', ['minhasDiretivas']).controller('FotosController', function($scope, $http){
 
 	$scope.fotos = [];
 	
 	$http.get('v1/fotos')
-		.then(function(result){
-			$scope.fotos = result.data;
+		.success(function(fotos){
+			$scope.fotos = fotos;
 		})
-		.catch(function(error){
+		.error(function(error){
 			console.log(error);
 		});
 
