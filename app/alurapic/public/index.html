@@ -1,55 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-br" ng-app="alurapic">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
-        <title>Alurapic</title>
-        
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        
-        <!-- My CSS -->
-        <link rel="stylesheet" href="css/my-animate.css">
-        
-        <!-- Angular -->
-        <script type="text/javascript" src="js/lib/angular.min.js"></script>
-        <script type="text/javascript" src="js/lib/angular-animate.min.js"></script>
 
+<head>
+    <meta charset="UTF-8">
 
-        <!-- Modules -->
-        <script type="text/javascript" src="js/main.js"></script>
-        <script type="text/javascript" src="js/controllers/fotos-controller.js"></script>
-        <script type="text/javascript" src="js/directives/diretivas.js"></script>
-    </head>
-    <body ng-controller="FotosController">
-        <div class="container">
-            <div class="jumbotron">
-                <h1 class="text-center">Alurapic</h1>
-            </div>
-            
-            <div class="row">
-                
-                <div class="col-md-12 col-xs-12">
-                    
-                    <div class="form-group">
-                        <label for="filtroImagem">Nome:</label>
-                        <input ng-model-options="{debounce : 500}" ng-model="filtro" class="form-control" id="filtroImagem" type="text" name="" placeholder="filtrar"/>
-                    </div>
-                        
-                </div>
-                
-            </div>
-            
-            <div class="row">
-                
-                <meu-painel class="col-md-2 col-xs-12 painel-animado" ng-repeat="foto in fotos | filter : {titulo:filtro, grupo:filtro}" titulo="{{foto.titulo}}" >
-                    
-                    <img class="img-responsive center-block" src="{{foto.url}}" alt="{{foto.titulo}}">
-                    
-                </meu-painel>
-                
-            </div>
-        </div> <!-- fim container -->        
-    </body>
+    <base href="/" />
+
+    <meta name="viewport" content="width=device-width">
+    <title>Alurapic</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="css/my-animate.css">
+
+    <!-- Angular -->
+    <script type="text/javascript" src="js/lib/angular.min.js"></script>
+    <script type="text/javascript" src="js/lib/angular-animate.min.js"></script>
+    <script type="text/javascript" src="js/lib/angular-route.min.js"></script>
+
+    <!-- Modules -->
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/controllers/fotos-controller.js"></script>
+    <script type="text/javascript" src="js/directives/diretivas.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <ng-view></ng-view>
+    </div>
+
 </html>

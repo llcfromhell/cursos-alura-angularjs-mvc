@@ -1,0 +1,29 @@
+<div ng-controller="FotosController">
+
+    <div class="jumbotron">
+        <h1 class="text-center">Alurapic</h1>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12 col-xs-12">
+
+            <div class="form-group">
+                <label for="filtroImagem">Nome:</label>
+                <input ng-model-options="{debounce : 500}" ng-model="filtro" class="form-control" id="filtroImagem" type="text" name="" placeholder="filtrar" />
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <meu-painel class="col-md-2 col-xs-12 painel-animado" ng-repeat="foto in fotos | filter : {titulo:filtro}" titulo="{{foto.titulo}}">
+
+            <minha-foto url={{foto.url}} alt="{{foto.titulo}}" />
+
+        </meu-painel>
+
+    </div>
+</div>
