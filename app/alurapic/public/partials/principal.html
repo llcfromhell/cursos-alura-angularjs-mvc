@@ -8,10 +8,24 @@
 
         <div class="col-md-12 col-xs-12">
 
-            <div class="form-group">
-                <label for="filtroImagem">Nome:</label>
-                <input ng-model-options="{debounce : 500}" ng-model="filtro" class="form-control" id="filtroImagem" type="text" name="" placeholder="filtrar" />
+            <div class="btn-group">
+
+                <a href="/fotos/new" class="btn btn-primary">Nova Imagem</a>
+                        
             </div>
+
+            <form>
+                <div class="form-group">
+
+                    <div class="input-group">
+
+                        <label for="filtroImagem">Nome:</label>
+                        <input ng-model-options="{debounce : 500}" ng-model="filtro" class="form-control" id="filtroImagem" type="text" name="" placeholder="filtrar" />
+
+                    </div>
+
+                </div>
+            </form>
 
         </div>
 
