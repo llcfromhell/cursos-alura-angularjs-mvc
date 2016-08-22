@@ -8,11 +8,17 @@
 
         <div class="col-md-12 col-xs-12">
 
-            <div class="btn-group">
-
-                <a href="/fotos/new" class="btn btn-primary">Nova Imagem</a>
-                        
+            <div class="well well-sm">
+                <div class="btn-group">
+    
+                    <a href="/fotos/new" class="btn btn-primary">Nova Imagem</a>
+                            
+                </div>
             </div>
+
+            <p ng-show="mensagem.length" class="alert alert-info">
+                {{mensagem}}
+            </p>
 
             <form>
                 <div class="form-group">
@@ -21,6 +27,7 @@
 
                         <label for="filtroImagem">Nome:</label>
                         <input ng-model-options="{debounce : 500}" ng-model="filtro" class="form-control" id="filtroImagem" type="text" name="" placeholder="filtrar" />
+                        
 
                     </div>
 
@@ -35,8 +42,11 @@
 
         <meu-painel class="col-md-2 col-xs-12 painel-animado" ng-repeat="foto in fotos | filter : {titulo:filtro}" titulo="{{foto.titulo}}">
 
-            <minha-foto url={{foto.url}} alt="{{foto.titulo}}" />
-
+            <minha-foto url={{foto.url}} alt="{{foto.titulo}}"></minha-foto>
+            
+            <a class="btn btn-primary btn-block" href="fotos/edit/{{foto._id}}">Editar</a>
+            <button class="btn btn-danger btn-block" ng-click="remover(foto)">Excluir</button>
+            
         </meu-painel>
 
     </div>

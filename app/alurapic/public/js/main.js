@@ -21,6 +21,13 @@ angular.module('alurapic', ['minhasDiretivas', 'FotosController', 'FotoControlle
             
         })
         
+        .when("/fotos/edit/:fotoId", {
+            
+            templateUrl: 'partials/foto.html',
+            controller : 'FotoController'
+            
+        })
+        
         .otherwise({redirectTo: '/fotos'});
         
     });
