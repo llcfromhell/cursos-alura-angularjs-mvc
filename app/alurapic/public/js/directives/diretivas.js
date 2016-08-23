@@ -36,3 +36,20 @@ angular.module('minhasDiretivas', [])
         return ddo;
         
     })
+    
+    .directive('remover', function(){
+    
+        var ddo = {
+            
+            transclude : true,
+            template : '<button ng-click="acao()" class="btn btn-danger btn-block">Remover</button>',
+            restrict : 'E',
+            scope : {
+                acao : '&'
+            }
+            
+        };
+        
+        return ddo;
+        
+    })

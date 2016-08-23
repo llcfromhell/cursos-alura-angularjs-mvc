@@ -1,4 +1,4 @@
-angular.module('alurapic', ['minhasDiretivas', 'FotosController', 'FotoController', 'ngAnimate', 'ngRoute'])
+angular.module('alurapic', ['minhasDiretivas', 'FotosController', 'FotoController', 'GruposController', 'ngAnimate', 'ngRoute'])
     
     .config(function($routeProvider, $locationProvider){
         

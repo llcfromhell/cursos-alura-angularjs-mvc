@@ -14,8 +14,6 @@ angular.module('FotosController', []).controller('FotosController', function($sc
 		
 	$scope.remover = function(foto) {
         
-        console.log(foto);
-        
         $http.delete("v1/fotos/" + foto._id)
             .success(function(){
                 $scope.fotos.splice($scope.fotos.indexOf(foto), 1);                

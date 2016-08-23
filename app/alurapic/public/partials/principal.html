@@ -45,7 +45,7 @@
             <minha-foto url={{foto.url}} alt="{{foto.titulo}}"></minha-foto>
             
             <a class="btn btn-primary btn-block" href="fotos/edit/{{foto._id}}">Editar</a>
-            <button class="btn btn-danger btn-block" ng-click="remover(foto)">Excluir</button>
+            <remover acao="remover(foto)"></remover>
             
         </meu-painel>
 
