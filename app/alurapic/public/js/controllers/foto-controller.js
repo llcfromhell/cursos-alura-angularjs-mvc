@@ -1,4 +1,4 @@
-angular.module('FotoController', []).controller('FotoController', function($scope, $http, $routeParams){
+angular.module('alurapic').controller('FotoController', function($scope, $http, $routeParams, fotosResource, cadastroFoto){
 
     $scope.foto = {};
     $scope.mensagem = "";
@@ -7,34 +7,46 @@ angular.module('FotoController', []).controller('FotoController', function($scop
 
     if (fotoId) {
 
-        $http.get("v1/fotos/" + fotoId)
+        fotosResource.get({fotoId : fotoId},
+        
+            function(foto){
 
-            .success(function(foto){
-                
                 $scope.foto = foto;
 
-            }).error(function(erro){
+            }, function(erro){
 
                 console.log(erro);
 
-            })
+            });
             
     }
 
     $scope.submeter = function() {
         
         if ($scope.formulario.$valid) {
-        
+    
+            cadastroFoto.cadastrar($scope.foto)
+                .then(function(resposta){
+                    $scope.mensagem = resposta.mensagem;
+                })
+                .catch(function(resposta){
+                    $scope.mensagem = resposta.mensagem;
+                });
+            
+            /*
             if (fotoId) {
              
-                $http.put("v1/fotos/" + fotoId, $scope.foto)
-                    .success(function() {
+                fotosResource.update({fotoId : $scope.foto._id}, $scope.foto, 
+                    
+                    function() {
+                        
                         $scope.mensagem = 'Foto alterada com sucesso';
-
-                    })
-                    .error(function(erro) {
+                    
+                    }, function(erro) {
+                        
                         console.log(erro);
                         $scope.mensagem = 'Não foi possível alterar';
+                    
                     });
                     
             } else {
@@ -60,6 +72,7 @@ angular.module('FotoController', []).controller('FotoController', function($scop
                     });
                     
             }
+            */
             
         }
     }
