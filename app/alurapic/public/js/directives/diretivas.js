@@ -41,7 +41,6 @@ angular.module('minhasDiretivas', [])
     
         var ddo = {
             
-            transclude : true,
             template : '<button ng-click="acao()" class="btn btn-danger btn-block">Remover</button>',
             restrict : 'E',
             scope : {
@@ -53,3 +52,51 @@ angular.module('minhasDiretivas', [])
         return ddo;
         
     })
+    .directive('focaAposCadastroDaFoto', function(){
+        
+        var ddo = {
+            
+            restrict : 'A',
+            scope : {
+                focado: '='
+            },
+            // link é a fase que o scope fica disponível
+            link : function(scope, element){
+            
+                // $on é para pegar o broadcast feito lá no serviço
+                scope.$on('fotoCadastrada', function() {
+                    
+                    // elemente é devido a api Sizzle que também é seguida pelo jQuery
+                    element[0].focus();
+                })
+            }
+        }
+        
+        //fazendo com watch
+        /*
+        ddo.link = function(scope, element) {
+        // quero observar qualquer mudança em `focado`!
+            scope.$watch('focado', function(novoValor, valorAntigo) {
+            alert('mudei');
+            });
+        };
+        */
+        
+        return ddo;
+        
+    }).directive('meusTitulos', function() {
+        var ddo = {};
+        
+        ddo.restrict = 'E';
+        ddo.template = '<ul><li ng-repeat="titulo in titulos">{{titulo}}</li></ul>';
+        
+        ddo.controller = function($scope, fotosResource) {
+            fotosResource.query(function(fotos) {
+                $scope.titulos = fotos.map(function(foto) {
+                    return foto.titulo;
+                });    
+            });
+        };
+        
+        return ddo;
+    });

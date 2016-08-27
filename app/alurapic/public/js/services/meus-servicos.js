@@ -2,24 +2,31 @@
 angular.module('meusServicos', ['ngResource'])
 
     .factory('fotosResource', function($resource) {
+        
         return $resource('v1/fotos/:fotoId', null, {
             'update': {
                 method : 'PUT'
             }
         });
+        
     })
-    .factory('cadastroFoto', function(fotosResource, $q) {
+    
+    .factory('cadastroFoto', function(fotosResource, $q, $rootScope) {
         var service = {};
         
         service.cadastrar = function(foto) {
         
             return $q(function(resolve, reject) {
 
+                var evento = 'fotoCadastrada';
+
                 if (foto._id) {
                     
                     fotosResource.update({fotoId:foto._id}, foto, 
                     
                         function(){
+                    
+                            $rootScope.$broadcast(evento);
                             
                             resolve({
                                 mensagem: "Dados salvos com sucesso!"
@@ -33,9 +40,12 @@ angular.module('meusServicos', ['ngResource'])
                         });
                     
                 } else {
+                    
                     fotosResource.save(foto, 
                     
                         function(){
+                            
+                            $rootScope.$broadcast(evento);
                             
                             resolve({
                                 mensagem: "Dados salvos com sucesso!"
